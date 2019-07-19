@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "*"
+
+[packages]
+fastapi = "*"
+databases = {extras = ["postgresql"],version = "*"}
+pytest = "*"
+pytest-asyncio = "*"
+sqlalchemy = "*"
+uvicorn = "*"
+aiosqlite = "*"
+requests = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
