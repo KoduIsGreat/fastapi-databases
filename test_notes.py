@@ -1,4 +1,4 @@
-from main import app, database, get_db
+from main import app, get_db
 from starlette.testclient import TestClient
 import pytest
 import asyncio
@@ -7,14 +7,14 @@ from databases import Database
 database = Database("sqlite:///./test_test.db", force_rollback=True)
 
 
-@app.on_event("startup")
-async def startup():
-    await database.connect()
+# @app.on_event("startup")
+# async def startup():
+#     await database.connect()
 
 
-@app.on_event("shutdown")
-async def shutdown():
-    await database.disconnect()
+# @app.on_event("shutdown")
+# async def shutdown():
+#     await database.disconnect()
 
 
 def db():
@@ -23,7 +23,6 @@ def db():
 
 @pytest.fixture
 def client():
-    database = Database("sqlite:///./test_test.db", force_rollback=True)
     app.dependency_overrides[get_db] = db
     with TestClient(app) as client:
         yield client
